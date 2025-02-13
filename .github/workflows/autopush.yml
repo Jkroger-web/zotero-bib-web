@@ -22,6 +22,6 @@ jobs:
       - name: Änderungen prüfen und pushen
         run: |
           git pull origin main
-          git add zotero.bib
+          git add zoteroweb.bib
           git commit -m "Auto-update zoteroweb.bib" || exit 0
           git push origin main || echo "No changes to push"

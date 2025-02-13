@@ -12,7 +12,14 @@ jobs:
       - name: Repository klonen
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.GH_PAT }}
+          persist-credentials: false
+
+      - name: Git authentifizieren
+        run: |
+          git config --global user.email "autosync@github.com"
+          git config --global user.name "AutoSyncBot"
+          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/Jkroger-web/zoteroweb.bib.git
+
 
       - name: Git konfigurieren
         run: |

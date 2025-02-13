@@ -1,0 +1,27 @@
+name: Auto-Push zotero.bib
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"  # Prüft alle 10 Minuten auf Änderungen
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository klonen
+        uses: actions/checkout@v2
+
+      - name: Git konfigurieren
+        run: |
+          git config --global user.email "autosync@github.com"
+          git config --global user.name "AutoSyncBot"
+
+      - name: Änderungen prüfen und pushen
+        run: |
+          git add zotero.bib
+          git commit -m "Auto-update zotero.bib" || exit 0
+          git push origin main || echo "No changes to push"

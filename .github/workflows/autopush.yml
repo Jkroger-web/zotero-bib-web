@@ -1,4 +1,4 @@
-name: Auto-Push zotero.bib
+name: Auto-Push zoteroweb.bib
 
 on:
   schedule:
@@ -22,6 +22,6 @@ jobs:
 
       - name: Änderungen prüfen und pushen
         run: |
-          git add zotero.bib
+          git add zoteroweb.bib
           git commit -m "Auto-update zotero.bib" || exit 0
           git push origin main || echo "No changes to push"
